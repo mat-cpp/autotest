@@ -47,11 +47,11 @@ CHECKFLAGS=" \
 		   --suppress=missingIncludeSystem \
 		   "
 
-all: check-folder $(PROBLEM_DIR)
-	clean
-	cxx-compile
-	clang-check
-	cppcheck-check
+all: check-folder $(PROBLEM_DIR) \
+	clean \
+	cxx-compile \
+	clang-check \
+	cppcheck-check \
 	run-test
 
 cxx-compile:
