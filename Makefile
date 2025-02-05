@@ -43,6 +43,8 @@ CHECKFLAGS := \
 		      --std=c++17 \
 		      --suppress=missingIncludeSystem
 
+CODE_FILES := `ls *.cpp *.hpp`
+
 all: check-folder $(PROBLEM_DIR) \
 	clean \
 	cxx-compile \
