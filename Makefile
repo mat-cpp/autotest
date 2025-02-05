@@ -48,8 +48,11 @@ CHECKFLAGS=" \
 		   "
 
 all: check-folder $(PROBLEM_DIR)
-	echo "Remove the output directory."
-	rm -f $(OUT_DIR)
+	clean
+	cxx-compile
+	clang-check
+	cppcheck-check
+	run-test
 
 cxx-compile:
 	echo "Compile with g++."
@@ -68,7 +71,7 @@ run-test:
 	./$(OUT_DIR)/cxx-out.o
 
 clean: check-folder
-	echo "Clean up afterwards."
+	echo "Remove the output directory."
 	rm -f $(OUT_DIR)
 
 # Check if FOLDER is set
