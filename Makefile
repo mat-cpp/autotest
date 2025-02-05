@@ -56,7 +56,7 @@ all: check-folder $(PROBLEM_DIR) \
 
 cxx-compile:
 	@echo "Compile with g++."
-	g++ $(COMMONFLAGS) $(CXXFLAGS) -o $(OUT_DIR)/cxx-out.o $(SRC)
+	g++ $(COMMONFLAGS) $(CXXFLAGS) -o $(OUT_DIR)/cxx-out $(SRC)
 
 clang-check:
 	@echo "Do clang++."
@@ -68,7 +68,8 @@ cppcheck-check:
 
 run-test:
 	@echo "Run the output."
-	.$(OUT_DIR)/cxx-out.o
+	ls $(OUT_DIR)
+	$(OUT_DIR)/cxx-out
 
 clean: check-folder
 	@echo "Remove the output directory."
