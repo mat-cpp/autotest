@@ -68,7 +68,6 @@ cppcheck-check:
 
 run-test:
 	@echo "Run the output."
-	ls $(OUT_DIR)
 	$(OUT_DIR)/cxx-out
 
 clean: check-folder
