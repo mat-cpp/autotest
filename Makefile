@@ -3,7 +3,7 @@ PROBLEM_DIR ?=
 
 # Define the source file and output executable if FOLDER is specified
 SRC = $(PROBLEM_DIR)/main.cpp
-OUT = $(PROBLEM_DIR)/o.out
+OUT_DIR = $(PROBLEM_DIR)/out_dir
 
 COMMONFLAGS=" \
 			-std=c++17 \
@@ -47,16 +47,29 @@ CHECKFLAGS=" \
 		   --suppress=missingIncludeSystem \
 		   "
 
-all: check-folder $(OUT)
+all: check-folder $(PROBLEM_DIR)
+	echo "Remove the output directory."
+	rm -f $(OUT_DIR)
 
-$(OUT): $(SRC)
-	g++ -std=c++11 -o $(OUT) $(SRC)
+cxx-compile:
+	echo "Compile with g++."
+	g++ $(COMMONFLAGS) $(CXXFLAGS) -o $(OUT_DIR)/cxx-out.o $(SRC)
 
-test: check-folder $(OUT)
-	./$(OUT)
+clang-check:
+	echo "Do clang++."
+	clang++ $(COMMONFLAGS) $(CLANGFLAGS) $(CODE_FILES)
+
+cppcheck-check:
+	echo "Do cppcheck."
+	cppcheck $(CHECKFLAGS) $(CODE_FILES)
+
+run-test:
+	echo "Run the output."
+	./$(OUT_DIR)/cxx-out.o
 
 clean: check-folder
-	rm -f $(FOLDER)/a.out
+	echo "Clean up afterwards."
+	rm -f $(OUT_DIR)
 
 # Check if FOLDER is set
 check-folder:
@@ -65,5 +78,5 @@ check-folder:
 		exit 1; \
 	fi
 
-.PHONY: all test clean check-folder
+.PHONY: all cxx-compile-test clang-check cppcheck-check run-test clean check-folder
 
