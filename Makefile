@@ -43,7 +43,9 @@ CHECKFLAGS := \
 		      --std=c++17 \
 		      --suppress=missingIncludeSystem
 
-CODE_FILES := `ls *.cpp *.hpp`
+# CODE_FILES := `ls *.cpp *.hpp`
+# This needs a bit more thinking
+CODE_FILES := $(SRC)
 
 all: check-folder $(PROBLEM_DIR) \
 	clean \
