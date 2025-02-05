@@ -55,24 +55,25 @@ all: check-folder $(PROBLEM_DIR) \
 	run-test
 
 cxx-compile:
-	echo "Compile with g++."
+	@echo "Compile with g++."
 	g++ $(COMMONFLAGS) $(CXXFLAGS) -o $(OUT_DIR)/cxx-out.o $(SRC)
 
 clang-check:
-	echo "Do clang++."
+	@echo "Do clang++."
 	clang++ $(COMMONFLAGS) $(CLANGFLAGS) $(CODE_FILES)
 
 cppcheck-check:
-	echo "Do cppcheck."
+	@echo "Do cppcheck."
 	cppcheck $(CHECKFLAGS) $(CODE_FILES)
 
 run-test:
-	echo "Run the output."
+	@echo "Run the output."
 	./$(OUT_DIR)/cxx-out.o
 
 clean: check-folder
-	echo "Remove the output directory."
+	@echo "Remove the output directory."
 	rm -f $(OUT_DIR)
+	mkdir $(OUT_DIR)
 
 # Check if FOLDER is set
 check-folder:
