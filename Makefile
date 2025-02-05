@@ -68,7 +68,7 @@ cppcheck-check:
 
 run-test:
 	@echo "Run the output."
-	./$(OUT_DIR)/cxx-out.o
+	.$(OUT_DIR)/cxx-out.o
 
 clean: check-folder
 	@echo "Remove the output directory."
